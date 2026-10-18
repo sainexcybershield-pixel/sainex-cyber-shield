@@ -1,0 +1,430 @@
+/* ==========================================================================
+   Sainex Cyber Shield - Natural Enterprise Corporate Stylesheet
+   Inspired by Securus & High-End Tech Hardware Brands
+   Palette: Rich Pitch Charcoal (#0c0c0c / #141414), Crimson & Fire Orange (#ff3b30 / #ff5500),
+   Crisp Pure White (#ffffff) and Executive Slate (#94a3b8)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-deep: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-card: #181818;
+  --bg-card-hover: #202020;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  
+  /* Brand Red & Flame Accents (Matching Official Logo) */
+  --brand-red: #ff3b30;
+  --brand-orange: #ff5500;
+  --brand-amber: #ff9500;
+  --brand-emerald: #10b981;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+}
+
+body {
+  overflow-x: hidden;
+  line-height: 1.6;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3b30;
+}
+
+/* Securus-style Red Accent Bar */
+.accent-stripe-red {
+  background: linear-gradient(90deg, #ff3b30 0%, #ff5500 100%);
+}
+
+/* Light Surface Sections (Securus Screenshot 2, 3, 4) */
+.bg-light-surface {
+  background-color: #fbfbfb;
+  color: #111827;
+}
+
+.bg-light-alt {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Light Mode Cards */
+.light-step-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+.light-step-card:hover {
+  transform: translateY(-3px);
+  border-color: #ff3b30;
+  box-shadow: 0 10px 25px rgba(255, 59, 48, 0.12);
+}
+
+/* Connected Timeline Line for The Sainex Advantage */
+.timeline-track-container {
+  position: relative;
+}
+.timeline-track-container::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+@media (max-width: 640px) {
+  .timeline-track-container::before {
+    display: none;
+  }
+}
+
+/* Values That Define Us (Securus Screenshot 4) */
+.values-card-container {
+  position: relative;
+  height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.values-card-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5);
+}
+.values-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.75) 50%, rgba(10, 10, 10, 0.98) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+/* Industry Photographic Cards (Securus Screenshot 5) */
+.industry-photo-card {
+  position: relative;
+  height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.industry-photo-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 59, 48, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 59, 48, 0.3);
+}
+.industry-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 12, 12, 0.25) 0%, rgba(10, 10, 10, 0.7) 45%, rgba(8, 8, 8, 0.96) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+/* Ecosystem Large Photographic Card (Securus Screenshot 3 & 4) */
+.ecosystem-photo-card {
+  position: relative;
+  height: 440px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ecosystem-photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+}
+.ecosystem-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(10, 10, 10, 0.6) 45%, rgba(8, 8, 8, 0.97) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+}
+
+/* Solid Crimson Call-to-Action Banner (Securus Screenshot 1 & 2) */
+.cta-crimson-banner {
+  background: linear-gradient(135deg, #ff3b30 0%, #e62e24 50%, #d32017 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(255, 59, 48, 0.4);
+}
+.cta-crimson-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Premium Securus Cards */
+.securus-card {
+  background: #141414;
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.securus-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 59, 48, 0.45);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 59, 48, 0.2);
+  background: #191919;
+}
+
+/* Primary Button (Matching Securus Red/Orange CTA) */
+.btn-securus-red {
+  background: linear-gradient(135deg, #ff3b30 0%, #e62e24 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 20px -2px rgba(255, 59, 48, 0.45);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-securus-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255, 59, 48, 0.65);
+  filter: brightness(1.08);
+}
+.btn-securus-red:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.btn-securus-outline {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.btn-securus-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Solid White Button on Red Banner */
+.btn-white-solid {
+  background: #ffffff;
+  color: #ff3b30;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-white-solid:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-white-outline {
+  background: transparent;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+.btn-white-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+}
+
+/* Section Header Badges */
+.section-badge-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff3b30;
+  font-weight: 700;
+}
+
+/* Number Watermarks (01, 02, 03) */
+.number-watermark {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+  color: #ff3b30;
+  letter-spacing: -0.05em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Location Cards (Securus Screenshot 1) */
+.footer-location-card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: all 0.25s ease;
+}
+.footer-location-card:hover {
+  border-color: #ff3b30;
+  background: #161616;
+}
+
+/* Floating Securus Chat Bubble */
+.securus-chat-pill {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #0c0c0c;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.securus-chat-pill:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+}
+
+.chat-red-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: #ff3b30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Form Inputs */
+.securus-input {
+  background-color: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+.securus-input:focus {
+  outline: none;
+  border-color: #ff3b30;
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.2);
+  background-color: #181818;
+}
+
+/* Modal Transitions */
+.modal-overlay {
+  background: rgba(4, 4, 4, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Print Friendly Stylesheet */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Hide standard page layout on print */
+  body > *:not(#quotationPreviewModal) {
+    display: none !important;
+  }
+
+  #quotationPreviewModal {
+    display: block !important;
+    position: static !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    inset: auto !important;
+    overflow: visible !important;
+    backdrop-filter: none !important;
+  }
+
+  #quotationPreviewModal > div {
+    max-width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  #printableQuoteSheet {
+    padding: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

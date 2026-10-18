@@ -1,0 +1,10 @@
+# Robots.txt for Sainex Cyber Shield
+# https://sainexcybershield.online/
+
+User-agent: *
+Allow: /
+Disallow: /data/
+Disallow: /admin.html
+
+# Sitemap location for Google Search Console
+Sitemap: https://sainexcybershield.online/sitemap.xml

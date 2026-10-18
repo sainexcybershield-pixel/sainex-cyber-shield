@@ -1,0 +1,29 @@
+# Environment & secrets
+.env
+.env.*
+*.env
+*.local
+credentials.json
+service-account*.json
+
+# Dependencies & build outputs
+node_modules/
+dist/
+build/
+.vercel/
+
+# Logs & temp files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local testing tools & archives
+server.ps1
+*.zip

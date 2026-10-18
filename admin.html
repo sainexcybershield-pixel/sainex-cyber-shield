@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Command Center | Sainex Cyber Shield ERP & CRM</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #080808; color: #f1f5f9; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .badge-stage { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-family: 'JetBrains Mono', monospace; display: inline-flex; align-items: center; gap: 5px; }
+    .stage-enquiry { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .stage-registered { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+    .stage-site_survey { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .stage-quotation_created { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .stage-approved { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .stage-technician_assigned { background: rgba(234, 88, 12, 0.15); color: #fb923c; border: 1px solid rgba(234, 88, 12, 0.3); }
+    .stage-service_completed { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+    .stage-invoiced { background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); }
+    .stage-payment { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .stage-amc_active { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .glass-card { background: #121212; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#ff3b30] selection:text-white">
+
+  <!-- =========================================================================
+       1. SECURITY AUTH LOCK SCREEN (Password Protected)
+       ========================================================================= -->
+  <div id="authLockScreen" class="fixed inset-0 z-50 bg-[#080808] flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full p-8 border border-white/10 shadow-2xl text-center space-y-6">
+      <div class="flex justify-center">
+        <img src="assets/logo-clean.png" alt="Sainex Cyber Shield" class="h-12 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(255,59,48,0.4)]" />
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-white tracking-tight">Admin Command Center</h2>
+        <p class="text-xs text-zinc-400 mt-1 font-mono">Restricted Access &bull; Surat &amp; Mandvi Operations</p>
+      </div>
+
+      <form id="adminLoginForm" class="space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-mono text-zinc-300 uppercase mb-1">Username</label>
+          <input type="text" id="adminUser" required value="admin" class="w-full bg-[#181818] border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#ff3b30]" />
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-zinc-300 uppercase mb-1">Access PIN / Password</label>
+          <input type="password" id="adminPass" required placeholder="Enter password (default: sainex2026)" class="w-full bg-[#181818] border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#ff3b30] font-mono" />
+        </div>
+        <div id="loginError" class="hidden text-xs text-red-400 font-mono bg-red-500/10 p-2.5 rounded border border-red-500/20">
+          ⚠ Incorrect password. Default is: <strong>sainex2026</strong>
+        </div>
+        <button type="submit" class="w-full btn-securus-red py-3 rounded-lg text-xs font-bold uppercase tracking-wider shadow-lg">
+          Authenticate &amp; Launch Console
+        </button>
+      </form>
+
+      <div class="pt-2 text-[11px] text-zinc-500 font-mono">
+        Official Internal Portal &bull; Sainex Cyber Shield
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN CONSOLE LAYOUT (Visible after Auth)
+       ========================================================================= -->
+  <div id="mainDashboardApp" class="hidden flex-1 flex flex-col">
+
+    <!-- Top Admin Header -->
+    <header class="bg-[#0e0e0e] border-b border-white/10 px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="assets/logo-clean.png" alt="Sainex Logo" class="h-8 w-auto object-contain" />
+          <span class="text-xs font-mono text-zinc-400 group-hover:text-white transition-colors">← View Customer Website</span>
+        </a>
+        <span class="text-zinc-600">|</span>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">ERP Operations Portal</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openModal('newLeadModal')" class="btn-securus-red px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow">
+          <span>+ New Client Entry</span>
+        </button>
+        <button onclick="exportToCSV()" class="btn-securus-outline px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <span>Export Excel</span>
+        </button>
+        <button onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-400 text-xs font-mono transition-colors">
+          Log Out
+        </button>
+      </div>
+    </header>
+
+    <!-- Sub-Navbar / Navigation Tabs -->
+    <nav class="bg-[#111111] border-b border-white/5 px-6 py-2.5 flex items-center justify-between text-xs font-mono overflow-x-auto">
+      <div class="flex items-center gap-2">
+        <button onclick="switchTab('pipelineTab')" id="tab_pipelineTab" class="nav-tab-btn active px-3.5 py-1.5 rounded-lg bg-[#ff3b30] text-white font-bold">
+          12-Stage Lifecycle CRM
+        </button>
+        <button onclick="switchTab('surveysTab')" id="tab_surveysTab" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900">
+          Site Surveys Schedule
+        </button>
+        <button onclick="switchTab('techniciansTab')" id="tab_techniciansTab" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900">
+          Field Fleet &amp; Vans
+        </button>
+        <button onclick="switchTab('amcTab')" id="tab_amcTab" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900">
+          Active AMC Contracts
+        </button>
+        <button onclick="switchTab('analyticsTab')" id="tab_analyticsTab" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900">
+          Website Analytics &amp; Conversion
+        </button>
+      </div>
+      <div class="text-[11px] text-zinc-500 shrink-0">
+        Bases: <span class="text-zinc-300">Surat Central &bull; Mandvi Regional</span>
+      </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 p-6 space-y-6 max-w-7xl w-full mx-auto">
+
+      <!-- =========================================================================
+           TOP KPI METRICS BAR
+           ========================================================================= -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Total Enquiries</div>
+          <div id="kpiEnquiries" class="text-2xl font-extrabold text-blue-400 font-mono">0</div>
+          <div class="text-[10px] text-zinc-500 font-mono">Web &amp; WhatsApp</div>
+        </div>
+
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Site Surveys</div>
+          <div id="kpiSurveys" class="text-2xl font-extrabold text-amber-400 font-mono">0</div>
+          <div class="text-[10px] text-zinc-500 font-mono">Surat &bull; Mandvi</div>
+        </div>
+
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Proposals Quoted</div>
+          <div id="kpiQuotes" class="text-2xl font-extrabold text-purple-400 font-mono">0</div>
+          <div class="text-[10px] text-zinc-500 font-mono">Formal Quotes</div>
+        </div>
+
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Active Deployments</div>
+          <div id="kpiDeployments" class="text-2xl font-extrabold text-orange-400 font-mono">0</div>
+          <div class="text-[10px] text-zinc-500 font-mono">Field Vans On-Site</div>
+        </div>
+
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Active AMC Clients</div>
+          <div id="kpiAMC" class="text-2xl font-extrabold text-emerald-400 font-mono">0</div>
+          <div class="text-[10px] text-zinc-500 font-mono">Contractual SLAs</div>
+        </div>
+
+        <div class="glass-card p-4 space-y-1">
+          <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Pipeline Volume</div>
+          <div id="kpiRevenue" class="text-xl font-extrabold text-white font-mono">₹ 0</div>
+          <div class="text-[10px] text-emerald-400 font-mono font-bold">+ Est. Pipeline</div>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           12-STAGE VISUAL LIFECYCLE PIPELINE TRACKER
+           Customer Website ➔ Enquiry ➔ Survey ➔ Quote ➔ Technician ➔ Invoice ➔ AMC
+           ========================================================================= -->
+      <div class="glass-card p-4 sm:p-5 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <span class="text-xs font-mono font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#ff3b30]"></span>
+            <span>12-Stage Enterprise Execution Lifecycle</span>
+          </span>
+          <span class="text-[11px] font-mono text-zinc-500">Click any stage to filter records</span>
+        </div>
+
+        <!-- Horizontal Stage Scroller -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 text-[11px] font-mono whitespace-nowrap">
+          <button onclick="filterStage('all')" class="stage-pill active px-3 py-1.5 rounded-lg bg-zinc-800 text-white font-bold border border-white/10">All Stages</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('enquiry')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-blue-400 border border-blue-500/20">1. New Enquiry</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('client_registered')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-indigo-400 border border-indigo-500/20">2. Client Registered</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('site_survey')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-amber-400 border border-amber-500/20">3. Site Survey</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('quotation_created')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-purple-400 border border-purple-500/20">4. Quoted</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('customer_approved')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-cyan-400 border border-cyan-500/20">5. Approved</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('technician_assigned')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-orange-400 border border-orange-500/20">6. Tech Assigned</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('service_completed')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-teal-400 border border-teal-500/20">7. Completed</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('invoiced')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-pink-400 border border-pink-500/20">8. Invoiced</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('payment_tracked')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-emerald-400 border border-emerald-500/20">9. Payment Tracked</button>
+          <span class="text-zinc-600">→</span>
+          <button onclick="filterStage('amc_active')" class="stage-pill px-3 py-1.5 rounded-lg bg-[#181818] text-green-400 border border-green-500/20">10. AMC &amp; Support</button>
+        </div>
+      </div>
+
+      <!-- =========================================================================
+           TAB 1: PIPELINE & LEADS CRM (Default)
+           ========================================================================= -->
+      <section id="pipelineTab" class="tab-pane space-y-4">
+        
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="w-full sm:w-96 relative">
+            <input type="text" id="leadSearchInput" onkeyup="filterLeads()" placeholder="Search company, client, phone, or location..." class="w-full bg-[#141414] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-[#ff3b30]" />
+            <svg class="w-4 h-4 text-zinc-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <select id="locationFilter" onchange="filterLeads()" class="bg-[#141414] border border-white/10 rounded-lg px-3 py-2 text-xs text-zinc-300 font-mono">
+              <option value="all">All Locations</option>
+              <option value="Pandesara">Pandesara GIDC</option>
+              <option value="Sachin">Sachin GIDC</option>
+              <option value="Katargam">Katargam Bourse</option>
+              <option value="Vesu">Vesu / Piplod</option>
+              <option value="Mandvi">Mandvi Regional</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- CRM Leads Table -->
+        <div class="glass-card overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#181818] text-zinc-400 uppercase font-mono text-[11px] border-b border-white/10">
+                <tr>
+                  <th class="p-3.5">Lead / ID</th>
+                  <th class="p-3.5">Client &amp; Facility</th>
+                  <th class="p-3.5">Service &amp; Scope</th>
+                  <th class="p-3.5">Current Stage</th>
+                  <th class="p-3.5">Est. Value</th>
+                  <th class="p-3.5">Technician</th>
+                  <th class="p-3.5 text-right">Instant Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody" class="divide-y divide-white/5">
+                <!-- Dynamically populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           TAB 2: SITE SURVEYS SCHEDULE
+           ========================================================================= -->
+      <section id="surveysTab" class="tab-pane hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-base font-bold text-white font-mono uppercase">On-Site Engineering Surveys</h3>
+            <p class="text-xs text-zinc-400">Doorstep inspections across Surat textile sheds, diamond vaults, and Mandvi plants.</p>
+          </div>
+        </div>
+        <div id="surveyCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           TAB 3: FIELD FLEET & VANS
+           ========================================================================= -->
+      <section id="techniciansTab" class="tab-pane hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-base font-bold text-white font-mono uppercase">Mobile Engineering Fleet &amp; Technicians</h3>
+            <p class="text-xs text-zinc-400">Real-time status of Surat &amp; Mandvi mobile support units equipped with hot-swap loaner hardware.</p>
+          </div>
+        </div>
+        <div id="techFleetGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           TAB 4: ACTIVE AMC CONTRACTS
+           ========================================================================= -->
+      <section id="amcTab" class="tab-pane hidden space-y-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-base font-bold text-white font-mono uppercase">Contractual AMC Client Accounts</h3>
+            <p class="text-xs text-zinc-400">Quarterly preventative inspection schedules &amp; emergency on-site SLA commitments.</p>
+          </div>
+        </div>
+        <div id="amcContractsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           TAB 5: WEBSITE ANALYTICS & CONVERSION
+           ========================================================================= -->
+      <section id="analyticsTab" class="tab-pane hidden space-y-4">
+        <div class="glass-card p-6 space-y-4">
+          <div class="flex justify-between items-center">
+            <h3 class="text-base font-bold text-white font-mono uppercase">Website Performance &amp; Conversion Analytics</h3>
+            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">Live Operational Telemetry</span>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 bg-[#181818] rounded-xl border border-white/5 space-y-1">
+              <div class="text-xs text-zinc-400 font-mono">Lead Conversion Rate</div>
+              <div class="text-3xl font-extrabold text-[#ff3b30] font-mono">14.8%</div>
+              <div class="text-[11px] text-zinc-500">Visitor to Inquiry Ratio</div>
+            </div>
+            <div class="p-4 bg-[#181818] rounded-xl border border-white/5 space-y-1">
+              <div class="text-xs text-zinc-400 font-mono">Top Requested Service</div>
+              <div class="text-lg font-bold text-white">4K CCTV (Surat Mills)</div>
+              <div class="text-[11px] text-zinc-500">42% of all inbound scopes</div>
+            </div>
+            <div class="p-4 bg-[#181818] rounded-xl border border-white/5 space-y-1">
+              <div class="text-xs text-zinc-400 font-mono">High-Demand Region</div>
+              <div class="text-lg font-bold text-white">Pandesara &bull; Sachin GIDC</div>
+              <div class="text-[11px] text-zinc-500">Fastest survey conversion zone</div>
+            </div>
+          </div>
+
+          <div class="p-4 bg-zinc-900/60 rounded-xl border border-white/5 space-y-2 text-xs text-zinc-300 font-sans">
+            <div class="font-bold text-white font-mono">Google Analytics 4 &amp; Google Search Console Architecture:</div>
+            <p>1. <strong>Client-side GA4 Tag:</strong> Configured in public `index.html` tracking 8 events (`whatsapp_click`, `phone_click`, `survey_form_submit`, etc.).</p>
+            <p>2. <strong>Security Precaution:</strong> Direct Google Analytics Data API queries are performed server-side to ensure zero private service-account keys or OAuth secrets are exposed in client-side code.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 1: ADD NEW CLIENT / LEAD ENTRY
+       ========================================================================= -->
+  <div id="newLeadModal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="glass-card max-w-lg w-full p-6 sm:p-7 border border-white/10 shadow-2xl relative space-y-4">
+      <div class="flex justify-between items-center pb-3 border-b border-white/10">
+        <h3 class="text-base font-bold text-white font-mono uppercase">Register New Client / Enquiry</h3>
+        <button onclick="closeModal('newLeadModal')" class="text-zinc-400 hover:text-white">✕</button>
+      </div>
+
+      <form id="newLeadForm" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Client Contact Name *</label>
+          <input type="text" id="nlName" required placeholder="e.g. Nilesh Patel" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-zinc-300 font-mono mb-1">Company / Plant Name *</label>
+            <input type="text" id="nlCompany" required placeholder="e.g. Gujarat Silk Mills" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white" />
+          </div>
+          <div>
+            <label class="block text-zinc-300 font-mono mb-1">Phone Number *</label>
+            <input type="tel" id="nlPhone" required placeholder="+91 98250 12345" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-zinc-300 font-mono mb-1">Location Zone *</label>
+            <select id="nlLocation" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono">
+              <option value="Pandesara GIDC, Surat">Pandesara GIDC, Surat</option>
+              <option value="Sachin GIDC, Surat">Sachin GIDC, Surat</option>
+              <option value="Katargam Bourse, Surat">Katargam Bourse, Surat</option>
+              <option value="Vesu / Piplod, Surat">Vesu / Piplod, Surat</option>
+              <option value="Mandvi Industrial Belt">Mandvi Industrial Belt</option>
+              <option value="Other South Gujarat">Other South Gujarat</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-zinc-300 font-mono mb-1">Estimated Value (₹)</label>
+            <input type="number" id="nlValue" placeholder="150000" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Service Required</label>
+          <select id="nlService" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white">
+            <option value="AI Smart CCTV Surveillance">AI Smart CCTV Surveillance</option>
+            <option value="Enterprise Networking & Mesh Wi-Fi">Enterprise Networking &amp; Mesh Wi-Fi</option>
+            <option value="Next-Gen Firewalls & Security">Next-Gen Firewalls &amp; Security</option>
+            <option value="Workforce Biometrics & Access Control">Workforce Biometrics &amp; Access Control</option>
+            <option value="Annual Maintenance Contract (AMC)">Annual Maintenance Contract (AMC)</option>
+            <option value="Complete Turnkey IT Infrastructure">Complete Turnkey IT Infrastructure</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Requirements / Site Notes</label>
+          <textarea id="nlNotes" rows="2" placeholder="e.g. 24 cameras in loom shed, fiber backbone to office" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white"></textarea>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('newLeadModal')" class="px-4 py-2 rounded bg-zinc-800 text-zinc-300 font-mono">Cancel</button>
+          <button type="submit" class="btn-securus-red px-5 py-2 rounded text-white font-bold font-mono">Save to Pipeline</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: LEAD STATUS UPDATE & TECHNICIAN ASSIGNMENT
+       ========================================================================= -->
+  <div id="updateLeadModal" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full p-6 border border-white/10 shadow-2xl relative space-y-4">
+      <div class="flex justify-between items-center pb-3 border-b border-white/10">
+        <h3 class="text-base font-bold text-white font-mono uppercase" id="modalLeadTitle">Update Stage</h3>
+        <button onclick="closeModal('updateLeadModal')" class="text-zinc-400 hover:text-white">✕</button>
+      </div>
+
+      <input type="hidden" id="editLeadId" />
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Move to Lifecycle Stage:</label>
+          <select id="editLeadStage" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono font-bold">
+            <option value="enquiry">1. New Enquiry</option>
+            <option value="client_registered">2. Client Registered</option>
+            <option value="site_survey">3. Site Survey Scheduled</option>
+            <option value="quotation_created">4. Quotation Created &amp; Sent</option>
+            <option value="customer_approved">5. Customer Approved</option>
+            <option value="technician_assigned">6. Technician Assigned / On-Site</option>
+            <option value="service_completed">7. Installation Completed</option>
+            <option value="invoiced">8. Invoiced</option>
+            <option value="payment_tracked">9. Payment Received / Tracked</option>
+            <option value="amc_active">10. Active AMC &amp; Future Support</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Assign Lead Engineer / Van:</label>
+          <select id="editLeadTech" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono">
+            <option value="Unassigned">Unassigned</option>
+            <option value="Hardik Engineer (Surat Van 1)">Hardik Engineer (Surat Van 1 - GJ-05)</option>
+            <option value="Suresh Lead & Team (Mandvi Van 2)">Suresh Lead &amp; Team (Mandvi Van 2 - GJ-21)</option>
+            <option value="Vipul Rathod (Surat Support)">Vipul Rathod (Surat Support)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-zinc-300 font-mono mb-1">Add Engineering / Follow-Up Note:</label>
+          <textarea id="editLeadNotes" rows="3" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white" placeholder="Add status updates, invoice numbers, or survey findings..."></textarea>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeModal('updateLeadModal')" class="px-4 py-2 rounded bg-zinc-800 text-zinc-300 font-mono">Cancel</button>
+          <button type="button" onclick="saveLeadUpdate()" class="btn-securus-red px-5 py-2 rounded text-white font-bold font-mono">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT LOGIC FOR ADMIN DASHBOARD
+       ========================================================================= -->
+  <script>
+    // 1. Session Authentication
+    const AUTH_KEY = 'sainex_admin_session';
+    const DEFAULT_PASS = 'sainex2026';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      loadDatabase();
+    });
+
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem(AUTH_KEY);
+      const lockScreen = document.getElementById('authLockScreen');
+      const app = document.getElementById('mainDashboardApp');
+
+      if (isAuth === 'true') {
+        lockScreen.classList.add('hidden');
+        app.classList.remove('hidden');
+      } else {
+        lockScreen.classList.remove('hidden');
+        app.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pass = document.getElementById('adminPass').value;
+      const err = document.getElementById('loginError');
+
+      if (pass === DEFAULT_PASS) {
+        sessionStorage.setItem(AUTH_KEY, 'true');
+        err.classList.add('hidden');
+        checkAuth();
+      } else {
+        err.classList.remove('hidden');
+      }
+    });
+
+    function logoutAdmin() {
+      sessionStorage.removeItem(AUTH_KEY);
+      checkAuth();
+    }
+
+    // 2. Data Store & State
+    let db = {
+      pipeline: [],
+      technicians: []
+    };
+    let currentFilterStage = 'all';
+
+    async function loadDatabase() {
+      // Try loading from localStorage first, then default seed
+      const local = localStorage.getItem('sainex_erp_db');
+      if (local) {
+        try {
+          db = JSON.parse(local);
+          renderAll();
+          return;
+        } catch (e) {}
+      }
+
+      try {
+        const res = await fetch('data/database.json');
+        if (res.ok) {
+          db = await res.json();
+          saveLocal();
+          renderAll();
+        }
+      } catch (err) {
+        console.error('Failed to load database.json:', err);
+      }
+    }
+
+    function saveLocal() {
+      localStorage.setItem('sainex_erp_db', JSON.stringify(db));
+      renderKPIs();
+    }
+
+    // 3. Rendering Modules
+    function renderAll() {
+      renderKPIs();
+      renderLeadsTable();
+      renderSurveys();
+      renderTechnicians();
+      renderAMC();
+    }
+
+    function renderKPIs() {
+      const pipeline = db.pipeline || [];
+      const enquiries = pipeline.filter(p => p.stage === 'enquiry').length;
+      const surveys = pipeline.filter(p => p.stage === 'site_survey').length;
+      const quotes = pipeline.filter(p => p.stage === 'quotation_created').length;
+      const deployments = pipeline.filter(p => p.stage === 'technician_assigned').length;
+      const amcs = pipeline.filter(p => p.stage === 'amc_active').length;
+
+      const totalVal = pipeline.reduce((sum, p) => sum + (Number(p.estimatedValue) || 0), 0);
+
+      document.getElementById('kpiEnquiries').textContent = enquiries;
+      document.getElementById('kpiSurveys').textContent = surveys;
+      document.getElementById('kpiQuotes').textContent = quotes;
+      document.getElementById('kpiDeployments').textContent = deployments;
+      document.getElementById('kpiAMC').textContent = amcs;
+      document.getElementById('kpiRevenue').textContent = '₹ ' + (totalVal / 100000).toFixed(2) + ' L';
+    }
+
+    function getStageBadge(stage) {
+      const map = {
+        'enquiry': { class: 'stage-enquiry', label: '1. New Enquiry' },
+        'client_registered': { class: 'stage-registered', label: '2. Registered' },
+        'site_survey': { class: 'stage-site_survey', label: '3. Site Survey' },
+        'quotation_created': { class: 'stage-quotation_created', label: '4. Quoted' },
+        'customer_approved': { class: 'stage-approved', label: '5. Approved' },
+        'technician_assigned': { class: 'stage-technician_assigned', label: '6. Tech Assigned' },
+        'service_completed': { class: 'stage-service_completed', label: '7. Completed' },
+        'invoiced': { class: 'stage-invoiced', label: '8. Invoiced' },
+        'payment_tracked': { class: 'stage-payment', label: '9. Payment Tracked' },
+        'amc_active': { class: 'stage-amc_active', label: '10. Active AMC' }
+      };
+      const info = map[stage] || { class: 'stage-enquiry', label: stage };
+      return `<span class="badge-stage ${info.class}">● ${info.label}</span>`;
+    }
+
+    function renderLeadsTable() {
+      const tbody = document.getElementById('leadsTableBody');
+      const search = (document.getElementById('leadSearchInput')?.value || '').toLowerCase();
+      const locFilter = document.getElementById('locationFilter')?.value || 'all';
+
+      let list = db.pipeline || [];
+
+      if (currentFilterStage !== 'all') {
+        list = list.filter(p => p.stage === currentFilterStage);
+      }
+
+      if (locFilter !== 'all') {
+        list = list.filter(p => p.location.includes(locFilter));
+      }
+
+      if (search) {
+        list = list.filter(p => 
+          p.clientName.toLowerCase().includes(search) ||
+          p.company.toLowerCase().includes(search) ||
+          p.phone.includes(search) ||
+          p.location.toLowerCase().includes(search)
+        );
+      }
+
+      if (!list.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-zinc-500 font-mono">No matching records in this lifecycle stage.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(item => {
+        const cleanPhone = item.phone.replace(/\D/g, '');
+        const waMsg = encodeURIComponent(
+          `Namaste ${item.clientName} ji, this is Sainex Cyber Shield regarding your inquiry for ${item.company}. Our systems engineer is ready to coordinate next steps.`
+        );
+
+        return `
+          <tr class="hover:bg-white/[0.02] transition-colors">
+            <td class="p-3.5 font-mono">
+              <span class="font-bold text-white">${item.id}</span>
+              <div class="text-[10px] text-zinc-500">${new Date(item.createdAt).toLocaleDateString()}</div>
+            </td>
+            <td class="p-3.5">
+              <div class="font-bold text-white text-sm">${item.clientName}</div>
+              <div class="text-zinc-400 text-xs">${item.company}</div>
+              <div class="text-[11px] font-mono text-zinc-500">${item.location}</div>
+            </td>
+            <td class="p-3.5">
+              <div class="font-semibold text-zinc-200">${item.service}</div>
+              <div class="text-[11px] text-zinc-400 font-mono max-w-xs truncate">${item.scopeSummary || item.notes || '-'}</div>
+            </td>
+            <td class="p-3.5 whitespace-nowrap">
+              ${getStageBadge(item.stage)}
+            </td>
+            <td class="p-3.5 font-mono font-bold text-emerald-400 whitespace-nowrap">
+              ₹ ${(Number(item.estimatedValue) || 0).toLocaleString('en-IN')}
+            </td>
+            <td class="p-3.5 font-mono text-xs text-zinc-300 whitespace-nowrap">
+              ${item.technician || '<span class="text-zinc-600">Unassigned</span>'}
+            </td>
+            <td class="p-3.5 text-right whitespace-nowrap space-x-1">
+              <a href="https://api.whatsapp.com/send?phone=${cleanPhone}&text=${waMsg}" target="_blank" class="px-2.5 py-1.5 rounded bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-600 hover:text-white font-mono text-[11px] font-bold inline-flex items-center gap-1 transition-all">
+                💬 WhatsApp
+              </a>
+              <a href="tel:${item.phone}" class="px-2 py-1.5 rounded bg-zinc-800 text-zinc-300 hover:text-white font-mono text-[11px]">
+                📞 Call
+              </a>
+              <button onclick="openUpdateModal('${item.id}')" class="px-2.5 py-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-white font-mono text-[11px] font-bold">
+                ✏️ Stage
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterStage(stage) {
+      currentFilterStage = stage;
+      document.querySelectorAll('.stage-pill').forEach(btn => {
+        btn.classList.remove('active', 'bg-zinc-800', 'text-white');
+        btn.classList.add('bg-[#181818]');
+      });
+      event.target.classList.add('active', 'bg-zinc-800', 'text-white');
+      renderLeadsTable();
+    }
+
+    function filterLeads() {
+      renderLeadsTable();
+    }
+
+    // 4. Update Stage Modal Logic
+    function openUpdateModal(id) {
+      const item = db.pipeline.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('editLeadId').value = item.id;
+      document.getElementById('modalLeadTitle').textContent = `Update: ${item.company} (${item.id})`;
+      document.getElementById('editLeadStage').value = item.stage;
+      document.getElementById('editLeadTech').value = item.technician || 'Unassigned';
+      document.getElementById('editLeadNotes').value = item.notes || '';
+
+      openModal('updateLeadModal');
+    }
+
+    function saveLeadUpdate() {
+      const id = document.getElementById('editLeadId').value;
+      const stage = document.getElementById('editLeadStage').value;
+      const tech = document.getElementById('editLeadTech').value;
+      const notes = document.getElementById('editLeadNotes').value;
+
+      const item = db.pipeline.find(p => p.id === id);
+      if (item) {
+        item.stage = stage;
+        item.technician = tech;
+        item.notes = notes;
+        saveLocal();
+        closeModal('updateLeadModal');
+        renderAll();
+      }
+    }
+
+    // 5. Add New Lead
+    document.getElementById('newLeadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newId = 'SNX-LEAD-' + Math.floor(100 + Math.random() * 900);
+      const newRecord = {
+        id: newId,
+        createdAt: new Date().toISOString(),
+        stage: 'enquiry',
+        clientName: document.getElementById('nlName').value,
+        company: document.getElementById('nlCompany').value,
+        phone: document.getElementById('nlPhone').value,
+        location: document.getElementById('nlLocation').value,
+        service: document.getElementById('nlService').value,
+        scopeSummary: document.getElementById('nlNotes').value,
+        estimatedValue: Number(document.getElementById('nlValue').value) || 0,
+        technician: 'Unassigned',
+        notes: document.getElementById('nlNotes').value
+      };
+
+      db.pipeline.unshift(newRecord);
+      saveLocal();
+      closeModal('newLeadModal');
+      document.getElementById('newLeadForm').reset();
+      renderAll();
+    });
+
+    // 6. Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId)?.classList.remove('hidden');
+
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-[#ff3b30]', 'text-white', 'font-bold');
+        btn.classList.add('text-zinc-400');
+      });
+      document.getElementById('tab_' + tabId)?.classList.add('bg-[#ff3b30]', 'text-white', 'font-bold');
+      document.getElementById('tab_' + tabId)?.classList.remove('text-zinc-400');
+    }
+
+    // 7. Render Other Modules
+    function renderSurveys() {
+      const grid = document.getElementById('surveyCardsGrid');
+      const surveys = db.pipeline.filter(p => p.stage === 'site_survey' || p.surveyDate);
+      if (!surveys.length) {
+        grid.innerHTML = `<div class="col-span-3 p-8 glass-card text-center text-zinc-500 font-mono">No site surveys currently scheduled.</div>`;
+        return;
+      }
+      grid.innerHTML = surveys.map(s => `
+        <div class="glass-card p-5 space-y-3 border-l-4 border-amber-500">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-mono font-bold text-amber-400">SURVEY SCHEDULED</span>
+            <span class="text-[11px] font-mono text-zinc-500">${s.id}</span>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white">${s.company}</h4>
+            <p class="text-xs text-zinc-300 font-mono">${s.location}</p>
+          </div>
+          <div class="p-2.5 bg-black/40 rounded text-xs font-mono text-zinc-300 space-y-1">
+            <div>👤 <strong>Contact:</strong> ${s.clientName} (${s.phone})</div>
+            <div>🛠️ <strong>Assigned Lead:</strong> ${s.technician || 'Pending Assignment'}</div>
+          </div>
+          <button onclick="openUpdateModal('${s.id}')" class="w-full py-2 rounded bg-zinc-800 hover:bg-zinc-700 text-xs font-bold font-mono text-white">
+            Update Survey Notes / Move to Quote →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function renderTechnicians() {
+      const grid = document.getElementById('techFleetGrid');
+      const techs = db.technicians || [];
+      grid.innerHTML = techs.map(t => `
+        <div class="glass-card p-5 space-y-3">
+          <div class="flex justify-between items-start">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold ${t.status === 'active' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-800 text-zinc-400'} uppercase">
+              ${t.status === 'active' ? '● On-Ground Active' : 'Standby Unit'}
+            </span>
+            <span class="text-xs font-mono text-zinc-500">${t.id}</span>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white">${t.name}</h4>
+            <p class="text-xs text-zinc-400">${t.role}</p>
+          </div>
+          <div class="text-xs font-mono text-zinc-300 space-y-1 bg-black/30 p-2.5 rounded">
+            <div>📍 <strong>Base:</strong> ${t.base}</div>
+            <div>🚐 <strong>Fleet Van:</strong> ${t.van}</div>
+            <div>📞 <strong>Direct:</strong> <a href="tel:${t.phone}" class="text-white hover:text-[#ff3b30]">${t.phone}</a></div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAMC() {
+      const grid = document.getElementById('amcContractsGrid');
+      const amcs = db.pipeline.filter(p => p.stage === 'amc_active');
+      if (!amcs.length) {
+        grid.innerHTML = `<div class="col-span-2 p-8 glass-card text-center text-zinc-500 font-mono">No active AMC contracts logged yet.</div>`;
+        return;
+      }
+      grid.innerHTML = amcs.map(a => `
+        <div class="glass-card p-5 space-y-3 border-l-4 border-emerald-500">
+          <div class="flex justify-between items-start">
+            <span class="badge-stage stage-amc_active">● ACTIVE AMC CONTRACT</span>
+            <span class="text-xs font-mono font-bold text-emerald-400">₹ ${(Number(a.estimatedValue) || 0).toLocaleString('en-IN')}/Yr</span>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white">${a.company}</h4>
+            <p class="text-xs text-zinc-400 font-mono">${a.location}</p>
+          </div>
+          <div class="p-3 bg-black/40 rounded text-xs text-zinc-300 font-mono space-y-1">
+            <div>👤 <strong>Signatory:</strong> ${a.clientName} (${a.phone})</div>
+            <div>📦 <strong>Scope:</strong> ${a.scopeSummary || a.service}</div>
+            <div>🛡️ <strong>Assigned Van:</strong> ${a.technician}</div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openUpdateModal('${a.id}')" class="flex-1 py-2 rounded bg-zinc-800 hover:bg-zinc-700 text-xs font-bold font-mono text-white">
+              View Log / Renew
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 8. CSV Export
+    function exportToCSV() {
+      const list = db.pipeline || [];
+      if (!list.length) return alert('No data to export.');
+
+      let csv = 'ID,Date,ClientName,Company,Phone,Location,Service,Stage,EstimatedValue,Technician,Notes\n';
+      list.forEach(item => {
+        csv += `"${item.id}","${item.createdAt}","${item.clientName}","${item.company}","${item.phone}","${item.location}","${item.service}","${item.stage}","${item.estimatedValue}","${item.technician}","${(item.notes || '').replace(/"/g, '""')}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Sainex_Pipeline_Export_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Modal Helpers
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (m) { m.classList.remove('hidden'); m.classList.add('flex'); }
+    }
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (m) { m.classList.add('hidden'); m.classList.remove('flex'); }
+    }
+  </script>
+</body>
+</html>
