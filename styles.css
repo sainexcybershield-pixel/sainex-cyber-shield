@@ -298,6 +298,8 @@ body {
 .section-badge-red {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
