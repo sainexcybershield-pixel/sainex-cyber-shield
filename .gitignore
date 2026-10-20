@@ -27,3 +27,5 @@ desktop.ini
 # Local testing tools & archives
 server.ps1
 *.zip
+*.bat
+*.ps1
