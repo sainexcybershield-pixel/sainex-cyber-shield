@@ -2,9 +2,8 @@
   "settings": {
     "companyName": "Sainex Cyber Shield",
     "tagline": "Enterprise IT Infrastructure, Surveillance & Network Defense",
-    "bases": "Surat Central & Mandvi Regional, Gujarat",
+    "bases": "Uttar Pradesh (Lucknow, Ayodhya, Kashi, Prayagraj) & Gujarat (Surat Central)",
     "helpline": "+91 81605 10524",
-    "email": "info@sainexcybershield.online",
     "currency": "INR",
     "taxRatePercent": 18
   },
@@ -65,13 +64,13 @@
       "createdAt": "2026-10-15T16:20:00Z",
       "stage": "technician_assigned",
       "clientName": "Jignesh Mehta",
-      "company": "Gujarat Agro Logistics Park",
+      "company": "Heritage Silk & Logistics Park",
       "phone": "+91 97129 33410",
-      "location": "Mandvi Industrial Belt",
+      "location": "Kashi Vishwanath Corridor & Cantt, UP",
       "service": "Turnkey IT & ANPR Boom Barriers",
       "scopeSummary": "Hikvision ANPR Gate Barrier + Armored Fiber Run (1.2 km)",
       "estimatedValue": 520000,
-      "technician": "Suresh Lead & Team (Mandvi Mobile Van)",
+      "technician": "Kashi / Prayagraj Operations Van (UP Team 3)",
       "surveyDate": "2026-10-16T14:00:00Z",
       "notes": "Client approved quotation. Advance 50% received. Deployment team on site for fiber laying.",
       "invoiceNumber": "SNX-INV-2026-041",
@@ -144,11 +143,48 @@
       "notes": "Active Contract. Next preventative inspection scheduled for Nov 2026. Standby switch tagged.",
       "invoiceNumber": "SNX-INV-2026-035",
       "paymentStatus": "paid"
+    },
+    {
+      "id": "SNX-LEAD-109",
+      "createdAt": "2026-10-18T10:00:00Z",
+      "stage": "site_survey",
+      "clientName": "Amit Sharma",
+      "company": "Ayodhya Heritage Grand Hotel",
+      "phone": "+91 94150 88210",
+      "location": "Ram Path & Hotel Corridor, Ayodhya Dham, UP",
+      "service": "AI Smart CCTV Surveillance",
+      "scopeSummary": "48 4K AI Cameras + Perimeter Motion + Wi-Fi 6 Guest Mesh",
+      "estimatedValue": 420000,
+      "technician": "Ayodhya Field Unit (UP Team 2)",
+      "surveyDate": "2026-10-20T11:00:00Z",
+      "notes": "Doorstep site survey confirmed for new wing expansion. Cable route survey on Ram Path.",
+      "invoiceNumber": "",
+      "paymentStatus": "pending"
+    },
+    {
+      "id": "SNX-LEAD-110",
+      "createdAt": "2026-10-18T12:30:00Z",
+      "stage": "enquiry",
+      "clientName": "Vivek Srivastava",
+      "company": "Awadh Tech Ventures",
+      "phone": "+91 94500 12890",
+      "location": "Gomti Nagar, Lucknow, UP",
+      "service": "Enterprise Networking & Next-Gen Firewalls",
+      "scopeSummary": "Sophos XGS 2300 UTM + 10G Fiber Core + 64 Biometric Nodes",
+      "estimatedValue": 310000,
+      "technician": "Lucknow Engineering Lead (UP Team 1)",
+      "surveyDate": "",
+      "notes": "Corporate office setup in Vibhuti Khand. Wants zero-trust VPN and 100% on-site SLA.",
+      "invoiceNumber": "",
+      "paymentStatus": "pending"
     }
   ],
   "technicians": [
     { "id": "TECH-1", "name": "Hardik Joshi", "role": "Senior Systems & Network Engineer", "base": "Surat Central", "van": "Surat Van 1 (GJ-05)", "phone": "+91 98250 11001", "status": "active" },
-    { "id": "TECH-2", "name": "Suresh Patel", "role": "Lead Surveillance & Fiber Specialist", "base": "Mandvi Regional", "van": "Mandvi Van 2 (GJ-21)", "phone": "+91 97120 22002", "status": "active" },
-    { "id": "TECH-3", "name": "Vipul Rathod", "role": "Firewall & Server Specialist", "base": "Surat Central", "van": "Surat Support Unit", "phone": "+91 99240 33003", "status": "available" }
+    { "id": "TECH-2", "name": "Suresh Patel", "role": "Lead Surveillance & Fiber Specialist", "base": "Surat Central Fleet 2", "van": "Surat Van 2 (GJ-05)", "phone": "+91 97120 22002", "status": "active" },
+    { "id": "TECH-3", "name": "Vipul Rathod", "role": "Firewall & Server Specialist", "base": "Surat Central", "van": "Surat Support Unit", "phone": "+91 99240 33003", "status": "available" },
+    { "id": "TECH-4", "name": "Abhishek Verma", "role": "State Lead & Network Defense Engineer", "base": "Lucknow Operations Hub", "van": "UP Van 1 (UP-32)", "phone": "+91 94150 33441", "status": "active" },
+    { "id": "TECH-5", "name": "Rajesh Tiwari", "role": "Senior Surveillance Specialist", "base": "Ayodhya Dham Wing", "van": "UP Van 2 (UP-42)", "phone": "+91 94500 55662", "status": "active" },
+    { "id": "TECH-6", "name": "Alok Mishra", "role": "Regional Field Engineer", "base": "Kashi & Prayagraj Wing", "van": "UP Van 3 (UP-65)", "phone": "+91 94520 77883", "status": "active" }
   ]
 }

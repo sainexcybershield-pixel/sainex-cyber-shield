@@ -40,7 +40,7 @@
       </div>
       <div>
         <h2 class="text-xl font-bold text-white tracking-tight">Admin Command Center</h2>
-        <p class="text-xs text-zinc-400 mt-1 font-mono">Restricted Access &bull; Surat &amp; Mandvi Operations</p>
+        <p class="text-xs text-zinc-400 mt-1 font-mono">Restricted Access &bull; UP &bull; Gujarat &bull; Online Operations</p>
       </div>
 
       <form id="adminLoginForm" class="space-y-4 text-left">
@@ -118,7 +118,7 @@
         </button>
       </div>
       <div class="text-[11px] text-zinc-500 shrink-0">
-        Bases: <span class="text-zinc-300">Surat Central &bull; Mandvi Regional</span>
+        Bases: <span class="text-zinc-300">Uttar Pradesh (Lucknow &bull; Ayodhya &bull; Kashi &bull; Prayagraj) &bull; Gujarat (Surat Central)</span>
       </div>
     </nav>
 
@@ -138,7 +138,7 @@
         <div class="glass-card p-4 space-y-1">
           <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Site Surveys</div>
           <div id="kpiSurveys" class="text-2xl font-extrabold text-amber-400 font-mono">0</div>
-          <div class="text-[10px] text-zinc-500 font-mono">Surat &bull; Mandvi</div>
+          <div class="text-[10px] text-zinc-500 font-mono">UP &bull; Gujarat</div>
         </div>
 
         <div class="glass-card p-4 space-y-1">
@@ -220,11 +220,15 @@
           <div class="flex items-center gap-2 w-full sm:w-auto">
             <select id="locationFilter" onchange="filterLeads()" class="bg-[#141414] border border-white/10 rounded-lg px-3 py-2 text-xs text-zinc-300 font-mono">
               <option value="all">All Locations</option>
+              <option value="Lucknow">Lucknow Hub</option>
+              <option value="Ayodhya">Ayodhya Dham</option>
+              <option value="Kashi">Kashi / Varanasi</option>
+              <option value="Prayagraj">Prayagraj / Allahabad</option>
               <option value="Pandesara">Pandesara GIDC</option>
               <option value="Sachin">Sachin GIDC</option>
               <option value="Katargam">Katargam Bourse</option>
               <option value="Vesu">Vesu / Piplod</option>
-              <option value="Mandvi">Mandvi Regional</option>
+              <option value="Surat">Surat Central</option>
             </select>
           </div>
         </div>
@@ -259,7 +263,7 @@
         <div class="flex justify-between items-center">
           <div>
             <h3 class="text-base font-bold text-white font-mono uppercase">On-Site Engineering Surveys</h3>
-            <p class="text-xs text-zinc-400">Doorstep inspections across Surat textile sheds, diamond vaults, and Mandvi plants.</p>
+            <p class="text-xs text-zinc-400">Doorstep inspections across Uttar Pradesh (Lucknow, Ayodhya, Kashi, Prayagraj) and Gujarat (Surat).</p>
           </div>
         </div>
         <div id="surveyCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -274,7 +278,7 @@
         <div class="flex justify-between items-center">
           <div>
             <h3 class="text-base font-bold text-white font-mono uppercase">Mobile Engineering Fleet &amp; Technicians</h3>
-            <p class="text-xs text-zinc-400">Real-time status of Surat &amp; Mandvi mobile support units equipped with hot-swap loaner hardware.</p>
+            <p class="text-xs text-zinc-400">Real-time status of Uttar Pradesh &amp; Surat mobile support fleet equipped with hot-swap loaner hardware.</p>
           </div>
         </div>
         <div id="techFleetGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -365,12 +369,17 @@
           <div>
             <label class="block text-zinc-300 font-mono mb-1">Location Zone *</label>
             <select id="nlLocation" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono">
+              <option value="Lucknow Operations Center, UP">Lucknow Operations Center, UP</option>
+              <option value="Ayodhya Dham Wing, UP">Ayodhya Dham Wing, UP</option>
+              <option value="Kashi (Varanasi) Hub, UP">Kashi (Varanasi) Hub, UP</option>
+              <option value="Prayagraj (Allahabad) Hub, UP">Prayagraj (Allahabad) Hub, UP</option>
+              <option value="Noida & NCR Corridor, UP">Noida &amp; NCR Corridor, UP</option>
+              <option value="Kanpur Industrial Belt, UP">Kanpur Industrial Belt, UP</option>
               <option value="Pandesara GIDC, Surat">Pandesara GIDC, Surat</option>
               <option value="Sachin GIDC, Surat">Sachin GIDC, Surat</option>
               <option value="Katargam Bourse, Surat">Katargam Bourse, Surat</option>
               <option value="Vesu / Piplod, Surat">Vesu / Piplod, Surat</option>
-              <option value="Mandvi Industrial Belt">Mandvi Industrial Belt</option>
-              <option value="Other South Gujarat">Other South Gujarat</option>
+              <option value="Other Regional Location">Other Regional Location</option>
             </select>
           </div>
           <div>
@@ -434,7 +443,8 @@
           <select id="editLeadTech" class="w-full bg-[#181818] border border-white/10 rounded px-3 py-2 text-white font-mono">
             <option value="Unassigned">Unassigned</option>
             <option value="Hardik Engineer (Surat Van 1)">Hardik Engineer (Surat Van 1 - GJ-05)</option>
-            <option value="Suresh Lead & Team (Mandvi Van 2)">Suresh Lead &amp; Team (Mandvi Van 2 - GJ-21)</option>
+            <option value="Suresh Lead & Team (Surat Fleet 2)">Suresh Lead &amp; Team (Surat Fleet 2 - GJ-05)</option>
+            <option value="Amit Sharma & Team (UP Operations Van)">Amit Sharma &amp; Team (UP Operations Van - UP-32)</option>
             <option value="Vipul Rathod (Surat Support)">Vipul Rathod (Surat Support)</option>
           </select>
         </div>

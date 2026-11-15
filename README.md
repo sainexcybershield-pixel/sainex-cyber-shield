@@ -1,6 +1,6 @@
 # Sainex Cyber Shield - Enterprise IT & Surveillance Web Portal
 
-Official modern, high-tech, responsive business website for **Sainex Cyber Shield**, an enterprise IT infrastructure, surveillance, server, and networking solutions company based in **Surat and Mandvi, Gujarat**.
+Official modern, high-tech, responsive business website for **Sainex Cyber Shield**, an enterprise IT infrastructure, surveillance, server, and networking solutions company based in **Uttar Pradesh (Lucknow, Ayodhya, Kashi, Prayagraj, Noida, Kanpur) and Gujarat (Surat)**.
 
 ---
 
@@ -18,13 +18,13 @@ Official modern, high-tech, responsive business website for **Sainex Cyber Shiel
   5. *Web Development & Server Systems* (Tally Prime servers, Synology NAS 3-2-1 backup, corporate web design)
   6. *Annual Maintenance Contracts (AMC)* (Guaranteed emergency SLA, quarterly preventative audits, loaner units)
 - **Interactive Industry Vertical Switcher**: Tailored solutions for:
-  - *Textile Mills & Dyeing Units* (Surat Ring Road, Pandesara, Sachin GIDC, Mandvi)
+  - *Textile Mills & Dyeing Units* (Surat Ring Road, Pandesara, Sachin GIDC, Kanpur & Varanasi)
   - *Diamond Cutting & Jewellery Units* (Katargam, Varachha, Mahidharpura)
-  - *Corporate Offices & IT Parks* (Piplod, Vesu, Adajan)
-  - *Retail Showrooms & Supermarkets* (Ghod Dod Road, VIP Road)
+  - *Corporate Offices & IT Parks* (Lucknow Gomti Nagar, Noida Tech Parks, Surat Vesu)
+  - *Retail Showrooms & Supermarkets* (Hazratganj, Ghod Dod Road, VIP Road)
   - *Housing Societies & Townships* (ANPR boom barriers, perimeter beams)
 - **Interactive Scope & AMC Calculator**: Real-time scope breakdown, SLA recommendation, and instant quote dispatch via WhatsApp.
-- **Doorstep Survey Booking Modal**: Quick on-site inspection booking for facilities in Surat and Mandvi.
+- **Doorstep Survey Booking Modal**: Quick on-site inspection booking for facilities across Uttar Pradesh (75 Districts) and Gujarat.
 - **Direct WhatsApp & Phone Integration**: Instant contact links with pre-formatted inquiry text to `+91 81605 10524`.
 - **Fully Responsive & Accessible**: Optimized for desktops, tablets, and smartphones.
 
@@ -79,5 +79,5 @@ This static website requires zero build steps or server runtimes. It can be host
 - **Company Name**: Sainex Cyber Shield
 - **Hotline / WhatsApp**: `+91 81605 10524`
 - **Email**: `info@sainexcybershield.online`
-- **Operational Bases**: Surat & Mandvi, Gujarat, India
+- **Operational Bases**: Uttar Pradesh (Lucknow HQ, Ayodhya Dham, Kashi, Prayagraj) & Gujarat (Surat Central), India
 - **Operating Hours**: Mon - Sat: 9:00 AM - 8:00 PM | 24/7 SLA Support for Contracted Clients

@@ -1,7 +1,8 @@
 /**
  * Sainex Cyber Shield - Core Interactive JavaScript
  * Enterprise IT Infrastructure, Surveillance & Network Defense
- * Locations: Surat & Mandvi, Gujarat | Phone: +91 81605 10524
+ * Regional Hubs: Uttar Pradesh (Lucknow, Ayodhya, Kashi, Prayagraj) & Gujarat (Surat) | 24/7 Online Support
+ * Phone: +91 81605 10524
  */
 
 function escapeHTML(str) {
@@ -267,7 +268,7 @@ const problemData = {
       'Receive quarterly preventative maintenance visits including thermal imaging of racks, cable health certification, and lens refocusing.'
     ],
     recommendedOEM: ['Sainex Dedicated Mobile Fleet', 'Standby Hot-Swap Hardware', 'Contractual SLA Guarantee'],
-    timeline: 'Immediate AMC Onboarding with Same-Day Equipment Health Audit across Surat & Mandvi.',
+    timeline: 'Immediate AMC Onboarding with Same-Day Equipment Health Audit across Uttar Pradesh & Surat Hubs.',
     whatsappText: 'Hi Sainex Cyber Shield, our current IT vendor is unresponsive during downtime. Please share your enterprise AMC details.'
   }
 };
@@ -360,10 +361,10 @@ function initDiagnosticTool() {
    ========================================================================== */
 const industryData = {
   textile: {
-    title: 'Textile Mills & Dyeing Units (Surat & Mandvi Hubs)',
+    title: 'Textile Mills, Dyeing Units & Industrial Parks (Surat & UP Hubs)',
     tagline: 'High-dust, moisture-tolerant industrial networks & plant-wide perimeter surveillance',
     description:
-      'Surat and Mandvi host India’s largest textile printing, weaving, and chemical processing complexes. These expansive multi-acre facilities suffer from lint dust, electrical noise, high temperatures, and vast cable runs between looms and administrative blocks.',
+      'Surat, Kanpur, and Varanasi host premier textile weaving, spinning, and processing complexes. These expansive multi-acre facilities suffer from lint dust, electrical noise, high temperatures, and vast cable runs between looms and administrative blocks.',
     solutions: [
       'Industrial IP67 weatherproof 4K bullet CCTV cameras with smart wiper lenses for high-lint loom sheds.',
       'Armored fiber optic backbone linking administrative blocks, weaving sheds, grey godowns, and boiler areas with zero packet drop.',
@@ -372,7 +373,7 @@ const industryData = {
       'Bandwidth QoS prioritizing ERP / Tally billing data over general internet during high-volume dispatch hours.'
     ],
     recommendedOEM: ['Hikvision DarkFighter', 'Cisco Catalyst Industrial', 'Matrix Comsec Biometrics', 'D-Link Industrial Switches'],
-    guarantee: '4-Hour Emergency Dispatch to Surat Ring Road, Pandesara, Sachin GIDC & Mandvi Industrial Belt.'
+    guarantee: '4-Hour Emergency Dispatch across Lucknow, Kanpur, Ayodhya, Kashi, and Surat Ring Road / Sachin GIDC.'
   },
   diamond: {
     title: 'Diamond Cutting, Polishing & Jewellery Units',
@@ -397,7 +398,7 @@ const industryData = {
     solutions: [
       'Enterprise Wi-Fi 6 Mesh access points with seamless zero-handoff roaming between boardrooms and cubicles.',
       'Multi-VLAN network segmentation isolating internal finance servers, Tally clients, IoT printers, and guest visitor portals.',
-      'Site-to-Site IPsec VPN connecting Surat corporate HQ to branch offices in Mandvi, Mumbai, or Ahmedabad.',
+      'Site-to-Site IPsec VPN connecting UP Headquarters in Lucknow to branch offices in Ayodhya, Noida, Surat, or Mumbai.',
       'Dedicated Windows/Linux Application & Tally Prime server provisioning with scheduled automated NAS cloud backups.',
       'Automated employee attendance sync with cloud HRMS and motorized electromagnetic access control.'
     ],
@@ -408,7 +409,7 @@ const industryData = {
     title: 'Retail Showrooms & Multi-Store Supermarkets',
     tagline: 'Anti-theft cash-counter surveillance, footfall heatmaps & POS network redundancy',
     description:
-      'Large retail stores and multi-chain showrooms along Ghod Dod Road, VIP Road, and Mandvi market need smart surveillance to prevent stock shrinkage, resolve billing disputes, and monitor customer foot traffic patterns.',
+      'Large retail stores and multi-chain showrooms along Hazratganj, Gomti Nagar, Ghod Dod Road, and VIP Road need smart surveillance to prevent stock shrinkage, resolve billing disputes, and monitor customer foot traffic patterns.',
     solutions: [
       'Wide-angle 4K dome cameras with built-in audio recording overlooking cash counters and POS billing stations.',
       'AI heatmapping and customer demographic counters analyzing peak shopping hours and display engagement.',
@@ -423,7 +424,7 @@ const industryData = {
     title: 'Gated Townships & Housing Societies',
     tagline: 'AI ANPR number plate recognition boom barriers, perimeter infrared beams & intercoms',
     description:
-      'Premium residential societies, high-rises, and gated farmhouses in Surat & Mandvi require robust perimeter defense, automated resident vehicle entry, and foolproof visitor logging to ensure family peace of mind.',
+      'Premium residential societies, high-rises, and gated developments in Lucknow, Noida, Ayodhya, and Surat require robust perimeter defense, automated resident vehicle entry, and foolproof visitor logging to ensure family peace of mind.',
     solutions: [
       'Automatic Number Plate Recognition (ANPR) cameras synced with automatic boom barriers for frictionless resident car entry.',
       'Perimeter infrared tripwire beams sounding alerts upon unauthorized fence crossing or boundary intrusion.',
@@ -557,7 +558,7 @@ function initAMCCalculator() {
       `• Security Gateway: ${fw}\n` +
       `• Preferred SLA Tier: ${tierName}\n` +
       `• Expected SLA: ${sla}\n\n` +
-      `Please provide an official proposal and schedule a free doorstep audit in Surat / Mandvi.`
+      `Please provide an official proposal and schedule a free doorstep audit in Uttar Pradesh / Gujarat.`
     );
     whatsappCalcBtn.href = `https://wa.me/918160510524?text=${waText}`;
 
@@ -613,10 +614,10 @@ function initContactForms() {
       if (honey) return; // Silent discard bot
 
       const name = document.getElementById('contactName')?.value?.trim() || 'Prospective Client';
-      const company = document.getElementById('contactCompany')?.value?.trim() || 'Business in Surat/Mandvi';
+      const company = document.getElementById('contactCompany')?.value?.trim() || 'Enterprise Client';
       const phone = document.getElementById('contactPhone')?.value?.trim() || '';
       const service = serviceDropdown?.value || 'IT Infrastructure & Surveillance Solutions';
-      const city = document.getElementById('contactCity')?.value || 'Surat / Mandvi';
+      const city = document.getElementById('contactCity')?.value || 'Uttar Pradesh / Gujarat';
       const message = document.getElementById('contactMessage')?.value?.trim() || 'Please schedule an on-site survey.';
 
       const phoneClean = phone.replace(/\D/g, '');
@@ -708,12 +709,12 @@ function initContactForms() {
           statusAlert.className = 'mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono leading-relaxed';
           mainContactForm.appendChild(statusAlert);
         }
-        statusAlert.innerHTML = `<strong>✓ Inquiry Received:</strong> Our systems engineers in Surat & Mandvi have received your request. We will reach out within 30 minutes, or you can chat directly via WhatsApp.`;
+        statusAlert.innerHTML = `<strong>✓ Inquiry Received:</strong> Our systems engineering teams in Uttar Pradesh &amp; Gujarat have received your request. We will reach out within 30 minutes, or you can chat directly via WhatsApp.`;
         statusAlert.classList.remove('hidden');
 
         showNotification(
           'Inquiry Submitted Successfully!',
-          'Our South Gujarat engineering team will contact you within 30 minutes. You can also chat immediately on WhatsApp.'
+          'Our engineering team in Uttar Pradesh / Gujarat will contact you within 30 minutes. You can also chat immediately on WhatsApp.'
         );
 
         // Sync lead into ERP Admin Database (localStorage)
@@ -722,7 +723,7 @@ function initContactForms() {
           clientName: name,
           company: document.getElementById('contactCompany')?.value?.trim() || 'Direct Client',
           phone: phone,
-          location: document.getElementById('contactCity')?.value || 'Surat / Mandvi',
+          location: document.getElementById('contactCity')?.value || 'UP / Gujarat Hub',
           service: serviceDropdown?.value || 'General IT Infrastructure',
           notes: document.getElementById('contactMessage')?.value?.trim() || 'Inquiry submitted from Contact Form'
         });
@@ -731,7 +732,7 @@ function initContactForms() {
         trackEvent('contact_form_submit', {
           form_id: 'mainContactForm',
           service_requested: serviceDropdown?.value || 'General IT Infrastructure',
-          facility_location: document.getElementById('contactCity')?.value || 'Surat / Mandvi',
+          facility_location: document.getElementById('contactCity')?.value || 'UP / Gujarat Hub',
           status: 'success'
         });
 
@@ -792,7 +793,7 @@ function initContactForms() {
         // Sync survey booking into ERP Admin Database (localStorage)
         const sName = document.getElementById('surveyName')?.value?.trim() || 'Survey Client';
         const sCompany = document.getElementById('surveyCompany')?.value?.trim() || 'Facility Client';
-        const sLoc = document.getElementById('surveyLocation')?.value || 'Surat / Mandvi';
+        const sLoc = document.getElementById('surveyLocation')?.value || 'UP / Gujarat Hub';
         const sTime = document.getElementById('surveyTime')?.value || '';
         const sReq = document.getElementById('surveyNotes')?.value?.trim() || '';
 
@@ -845,7 +846,7 @@ function syncLeadToERP(leadData) {
       clientName: leadData.clientName || 'Website Client',
       company: leadData.company || 'Direct Inquiry',
       phone: leadData.phone || '',
-      location: leadData.location || 'Surat / Mandvi',
+      location: leadData.location || 'UP / Gujarat Hub',
       service: leadData.service || 'IT & CCTV Infrastructure',
       scopeSummary: leadData.notes || 'Online Website Enquiry',
       estimatedValue: leadData.estimatedValue || 45000,
