@@ -92,6 +92,9 @@
         <button onclick="exportToCSV()" class="btn-securus-outline px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
           <span>Export Excel</span>
         </button>
+        <button onclick="clearAllLeads()" class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/10 hover:border-amber-500/40 text-zinc-400 hover:text-amber-400 text-xs font-mono transition-colors" title="Clear sample demo leads">
+          <span>Clear Demo Data</span>
+        </button>
         <button onclick="logoutAdmin()" class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/10 hover:border-red-500/40 text-zinc-400 hover:text-red-400 text-xs font-mono transition-colors">
           Log Out
         </button>
@@ -516,25 +519,51 @@
     let currentFilterStage = 'all';
 
     async function loadDatabase() {
-      // Try loading from localStorage first, then default seed
+      const demoPurged = localStorage.getItem('sainex_demo_purged_v3');
       const local = localStorage.getItem('sainex_erp_db');
-      if (local) {
+
+      if (local && demoPurged === 'true') {
         try {
           db = JSON.parse(local);
+          // Safety: ensure no old demo seed leads linger
+          if (Array.isArray(db.pipeline)) {
+            db.pipeline = db.pipeline.filter(p => !p.id.startsWith('SNX-LEAD-10'));
+          }
           renderAll();
           return;
         } catch (e) {}
       }
 
+      // Purge demo seed leads and reset to clean state
       try {
         const res = await fetch('data/database.json');
         if (res.ok) {
           db = await res.json();
+          if (Array.isArray(db.pipeline)) {
+            db.pipeline = db.pipeline.filter(p => !p.id.startsWith('SNX-LEAD-10'));
+          }
+          localStorage.setItem('sainex_demo_purged_v3', 'true');
           saveLocal();
           renderAll();
+          return;
         }
       } catch (err) {
         console.error('Failed to load database.json:', err);
+      }
+
+      // Fallback clean state
+      db = { pipeline: [], technicians: [] };
+      localStorage.setItem('sainex_demo_purged_v3', 'true');
+      saveLocal();
+      renderAll();
+    }
+
+    function clearAllLeads() {
+      if (confirm('Are you sure you want to clear all demo / sample leads? This will reset the pipeline to 0.')) {
+        db.pipeline = [];
+        localStorage.setItem('sainex_demo_purged_v3', 'true');
+        saveLocal();
+        renderAll();
       }
     }
 
@@ -612,7 +641,17 @@
       }
 
       if (!list.length) {
-        tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-zinc-500 font-mono">No matching records in this lifecycle stage.</td></tr>`;
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="p-12 text-center space-y-2">
+              <div class="text-2xl mb-1">📋</div>
+              <div class="text-white font-mono font-bold text-sm">No Client Inquiries Logged Yet</div>
+              <p class="text-xs text-zinc-500 font-mono max-w-md mx-auto">
+                Demo data has been cleared. When real customers submit an inquiry or survey booking on your website, their full details will appear here automatically.
+              </p>
+            </td>
+          </tr>
+        `;
         return;
       }
 
