@@ -1735,22 +1735,23 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label for="contactName" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Your Full Name *</label>
-                    <input type="text" id="contactName" required maxlength="100" placeholder="e.g. Ramesh Patel / Amit Sharma" class="securus-input w-full px-4 py-3 rounded-lg text-sm" />
+                    <input type="text" id="contactName" required maxlength="100" placeholder="Enter your full name" class="securus-input w-full px-4 py-3 rounded-lg text-sm" />
                   </div>
                   <div>
                     <label for="contactCompany" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Business / Company Name *</label>
-                    <input type="text" id="contactCompany" required maxlength="120" placeholder="e.g. Ayodhya Grand Hotel / Gujarat Synthetics" class="securus-input w-full px-4 py-3 rounded-lg text-sm" />
+                    <input type="text" id="contactCompany" required maxlength="120" placeholder="Enter company / business name" class="securus-input w-full px-4 py-3 rounded-lg text-sm" />
                   </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label for="contactPhone" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Phone Number *</label>
-                    <input type="tel" id="contactPhone" required maxlength="15" placeholder="+91 81605 10524" class="securus-input w-full px-4 py-3 rounded-lg text-sm font-mono" />
+                    <input type="tel" id="contactPhone" required maxlength="15" placeholder="Enter 10-digit mobile number" class="securus-input w-full px-4 py-3 rounded-lg text-sm font-mono" />
                   </div>
                   <div>
                     <label for="contactCity" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Facility Location *</label>
-                    <select id="contactCity" class="securus-input w-full px-4 py-3 rounded-lg text-sm">
+                    <select id="contactCity" required class="securus-input w-full px-4 py-3 rounded-lg text-sm">
+                      <option value="" disabled selected>-- Select Your City / Location --</option>
                       <optgroup label="Uttar Pradesh Hubs (Priority On-Site Fleet)">
                         <option value="Lucknow - Gomti Nagar / Hazratganj / Amausi">Lucknow - Gomti Nagar / Hazratganj / Amausi (UP State HQ)</option>
                         <option value="Ayodhya Dham - Ram Mandir & Hotel Corridor">Ayodhya Dham - Ram Mandir / Ram Path / Hotels (UP)</option>
@@ -1776,7 +1777,8 @@
 
                 <div>
                   <label for="contactService" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Service Required *</label>
-                  <select id="contactService" class="securus-input w-full px-4 py-3 rounded-lg text-sm">
+                  <select id="contactService" required class="securus-input w-full px-4 py-3 rounded-lg text-sm">
+                    <option value="" disabled selected>-- Select Required Service --</option>
                     <option value="AI Smart CCTV Surveillance">AI Smart CCTV Surveillance (4K, ANPR, NVR Storage)</option>
                     <option value="Hospitality & Hotel Surveillance (Ayodhya/UP)">Hospitality &amp; Hotel AI Surveillance (Ayodhya / UP Hubs)</option>
                     <option value="Enterprise Networking & Mesh Wi-Fi">Enterprise Networking &amp; Mesh Wi-Fi (Fiber, Cat6, Switches)</option>
@@ -1792,7 +1794,7 @@
 
                 <div>
                   <label for="contactMessage" class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Project Details</label>
-                  <textarea id="contactMessage" rows="3" maxlength="600" placeholder="Tell us about your facility size, number of cameras, or existing issues..." class="securus-input w-full px-4 py-3 rounded-lg text-sm"></textarea>
+                  <textarea id="contactMessage" rows="3" maxlength="600" placeholder="Tell us about your requirements (e.g. number of cameras, Wi-Fi coverage, router setup)..." class="securus-input w-full px-4 py-3 rounded-lg text-sm"></textarea>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
@@ -1975,24 +1977,25 @@
 
         <div>
           <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Contact Person Name *</label>
-          <input type="text" id="surveyName" required maxlength="100" placeholder="e.g. Ramesh Patel / Amit Sharma" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm" />
+          <input type="text" id="surveyName" required maxlength="100" placeholder="Enter contact person name" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Company / Factory / Hotel *</label>
-            <input type="text" id="surveyCompany" required placeholder="e.g. Ayodhya Heritage Resort / Apex Mills" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm" />
+            <input type="text" id="surveyCompany" required placeholder="Enter company / hotel / facility name" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm" />
           </div>
           <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Phone Number *</label>
-            <input type="tel" id="surveyPhone" required placeholder="+91 81605 10524" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm font-mono" />
+            <input type="tel" id="surveyPhone" required placeholder="Enter 10-digit mobile number" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm font-mono" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Location / Hub Area *</label>
-            <select id="surveyLocation" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm">
+            <select id="surveyLocation" required class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm">
+              <option value="" disabled selected>-- Select Your City / Location --</option>
               <optgroup label="Uttar Pradesh Hubs (Priority Fleet)">
                 <option value="Lucknow - Gomti Nagar / Hazratganj / Amausi">Lucknow - Gomti Nagar / Hazratganj / Amausi</option>
                 <option value="Ayodhya Dham - Ram Path / Dharma Path / Hotel Corridor">Ayodhya Dham - Ram Path / Hotel Corridor</option>
@@ -2017,7 +2020,8 @@
           </div>
           <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Preferred Time</label>
-            <select id="surveyTime" class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm">
+            <select id="surveyTime" required class="securus-input w-full px-3.5 py-2.5 rounded-lg text-sm">
+              <option value="" disabled selected>-- Select Preferred Time --</option>
               <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
               <option value="Afternoon (2:00 PM - 5:00 PM)">Afternoon (2:00 PM - 5:00 PM)</option>
               <option value="Evening (5:00 PM - 7:30 PM)">Evening (5:00 PM - 7:30 PM)</option>
@@ -2027,7 +2031,7 @@
 
         <div>
           <label class="block text-xs font-mono uppercase tracking-wider text-zinc-300 mb-1">Requirements / Notes</label>
-          <textarea id="surveyNotes" rows="2" placeholder="e.g. Need 24 cameras in loom shed and Wi-Fi roaming across warehouse" class="securus-input w-full px-3.5 py-2 rounded-lg text-sm"></textarea>
+          <textarea id="surveyNotes" rows="2" placeholder="Describe your requirement (e.g. Need 24 cameras, Wi-Fi coverage across site)..." class="securus-input w-full px-3.5 py-2 rounded-lg text-sm"></textarea>
         </div>
 
         <div class="pt-2">
